@@ -18,6 +18,8 @@ let booted = false
  */
 function setupAutoUpdate(win) {
   if (!app.isPackaged) return
+  // Microsoft Store (MSIX) builds are updated by the Store, not electron-updater.
+  if (process.windowsStore) return
   const send = (payload) => {
     if (win && !win.isDestroyed()) win.webContents.send('update:status', payload)
   }

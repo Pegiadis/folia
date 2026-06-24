@@ -10,7 +10,8 @@
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "start": "electron-vite preview",
-    "dist": "electron-vite build && electron-builder --win"
+    "dist": "electron-vite build && electron-builder --win",
+    "dist:store": "electron-vite build && electron-builder --win appx"
   },
   "dependencies": {
     "electron-updater": "^6.8.9",
@@ -66,6 +67,18 @@
         "icon": "build/icon.ico"
       }
     ],
+    "appx": {
+      "identityName": "PegiadisIoannis.Folia-PDF",
+      "publisher": "CN=D39C3EBC-47BC-4A40-9069-2FDAFFB56AAB",
+      "publisherDisplayName": "Pegiadis Ioannis",
+      "applicationId": "FoliaPDF",
+      "displayName": "Folia-PDF",
+      "backgroundColor": "#2563EB",
+      "showNameOnTiles": true,
+      "languages": [
+        "en-US"
+      ]
+    },
     "nsis": {
       "oneClick": false,
       "perMachine": false,
