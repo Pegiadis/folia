@@ -54,7 +54,7 @@
     "publish": [
       {
         "provider": "generic",
-        "url": "https://folia.yourdomain.com/updates/"
+        "url": "https://folia.duckdns.org/updates/"
       }
     ],
     "fileAssociations": [
