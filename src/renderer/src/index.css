@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Slate + blue flat design system (HSL channels for token composition). */
+    --background: 210 40% 98%; /* #F8FAFC canvas */
+    --foreground: 222 47% 11%; /* #0F172A text */
+    --card: 0 0% 100%; /* white surfaces */
+    --card-foreground: 222 47% 11%;
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 16% 47%;
+    --primary: 217 33% 17%; /* #1E293B slate */
+    --primary-foreground: 0 0% 100%;
+    --accent: 221 83% 53%; /* #2563EB blue */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%; /* #DC2626 red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  /* Slim, calm scrollbar that fits the flat aesthetic. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}

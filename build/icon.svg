@@ -1,0 +1,11 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" rx="56" fill="#2563EB"/>
+  <!-- page with folded corner -->
+  <path d="M78 56 h70 l30 30 v114 a8 8 0 0 1 -8 8 H78 a8 8 0 0 1 -8 -8 V64 a8 8 0 0 1 8 -8 z" fill="#FFFFFF"/>
+  <path d="M148 56 l30 30 h-26 a4 4 0 0 1 -4 -4 z" fill="#DBEAFE"/>
+  <!-- text lines -->
+  <rect x="92" y="120" width="72" height="9" rx="4.5" fill="#CBD5E1"/>
+  <rect x="92" y="140" width="72" height="9" rx="4.5" fill="#CBD5E1"/>
+  <!-- yellow highlight mark -->
+  <rect x="92" y="160" width="56" height="14" rx="3" fill="#FACC15"/>
+</svg>
