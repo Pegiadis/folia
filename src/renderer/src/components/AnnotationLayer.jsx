@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { SIZES } from '@/lib/annotations'
 
 // --- geometry helpers (all in normalized [0,1] page space) ------------------
@@ -57,10 +57,20 @@ export function AnnotationLayer({
   onDeleteSelected
 }) {
   const svgRef = useRef(null)
+  const inputRef = useRef(null)
   const [draft, setDraft] = useState(null)
   const [drag, setDrag] = useState(null)
   const [erasing, setErasing] = useState(false)
   const [editing, setEditing] = useState(null) // { x, y, value }
+
+  // Focus the text box the moment it appears. Doing this synchronously after
+  // the tap (rather than relying on the `autoFocus` attribute alone) is what
+  // makes the Windows touch keyboard reliably open on tablets.
+  useLayoutEffect(() => {
+    if (editing && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [editing])
 
   const pageAnns = annotations.filter((a) => a.page === pageNumber)
   const drawing = tool !== 'select'
@@ -89,7 +99,10 @@ export function AnnotationLayer({
   const handlePointerDown = (e) => {
     if (editing) return
     const p = pointFromEvent(e)
-    e.currentTarget.setPointerCapture(e.pointerId)
+    // Capture the pointer only for drag-based tools. The text tool hands off to
+    // a textarea, so capturing here would keep input bound to the SVG and stop
+    // the field (and touch keyboard) from engaging.
+    if (tool !== 'text') e.currentTarget.setPointerCapture(e.pointerId)
 
     if (tool === 'select') {
       const found = [...pageAnns].reverse().find((a) => hit(a, p))
@@ -259,6 +272,7 @@ export function AnnotationLayer({
 
       {editing && (
         <textarea
+          ref={inputRef}
           autoFocus
           value={editing.value}
           onChange={(e) => setEditing({ ...editing, value: e.target.value })}

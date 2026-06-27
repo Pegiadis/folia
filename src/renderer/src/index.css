@@ -43,6 +43,19 @@
     overflow: hidden;
   }
 
+  /* Text inputs must stay user-editable/selectable: the global `user-select:
+     none` above is inherited by every descendant, which on touch devices
+     suppresses the caret and the on-screen keyboard for the text tool and
+     form fields. Re-enable text selection for all editable controls. */
+  input,
+  textarea,
+  select,
+  [contenteditable='true'] {
+    -webkit-user-select: text;
+    user-select: text;
+    touch-action: auto;
+  }
+
   /* Slim, calm scrollbar that fits the flat aesthetic. */
   ::-webkit-scrollbar {
     width: 10px;
